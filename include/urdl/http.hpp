@@ -412,6 +412,80 @@ private:
   std::string value_;
 };
 
+/// Option to specify the authorization header.
+/**
+ * @par Remarks
+ * The default is to not specify the authorization header.
+ *
+ * @par Example
+ * To set the authorization for an object of class @c urdl::istream:
+ * @code
+ * urdl::istream is;
+ * is.set_option(urdl::http::authorization("authorization string"));
+ * is.open("http://www.boost.org");
+ * @endcode
+ *
+ * To set the authorization for an object of class @c urdl::read_stream:
+ * @code
+ * urdl::read_stream stream;
+ * stream.set_option(urdl::http::authorization("authorization string"));
+ * stream.open("http://www.boost.org");
+ * @endcode
+ *
+ * @par Requirements
+ * @e Header: @c <urdl/http.hpp> @n
+ * @e Namespace: @c urdl::http
+ */
+class authorization
+{
+public:
+  /// Constructs an object of class @c authorization.
+  /**
+   * @par Remarks
+   * Postcondition: <tt>value() == ""</tt>.
+   */
+  authorization()
+    : value_("")
+  {
+  }
+
+  /// Constructs an object of class @c authorization.
+  /**
+   * @param v The desired value for the option.
+   *
+   * @par Remarks
+   * Postcondition: <tt>value() == v</tt>
+   */
+  explicit authorization(const std::string& v)
+    : value_(v)
+  {
+  }
+
+  /// Gets the value of the option.
+  /**
+   * @returns The value of the option.
+   */
+  std::string value() const
+  {
+    return value_;
+  }
+
+  /// Sets the value of the option.
+  /**
+   * @param v The desired value for the option.
+   *
+   * @par Remarks
+   * Postcondition: <tt>value() == v</tt>
+   */
+  void value(const std::string& v)
+  {
+    value_ = v;
+  }
+
+private:
+  std::string value_;
+};
+
 namespace errc {
 
 /// HTTP error codes.
